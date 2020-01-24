@@ -23,11 +23,6 @@ public class MovieCatalogRepository {
 
     public Movie getMovie(String id){
         Optional<Movie> movie = this.moviesList.stream().filter(m -> m.getMovieId().equals(id)).findFirst();
-        if(movie.isPresent()){
-            return movie.get();
-        }
-        else{
-            return new Movie();
-        }
+        return movie.orElseGet(Movie::new);
     }
 }
